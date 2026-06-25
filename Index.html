@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MF Parfums — Perfumería Tester Original | Envíos a toda España</title>
+<meta name="description" content="MF Parfums: perfumería tester 100% original, las mejores casas de perfumería a precio justo, con envío a toda España.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ====== TOP ANNOUNCEMENT BAR ====== -->
+<div class="announce-bar">
+  <p>Envíos a toda España &nbsp;·&nbsp; Perfumería tester 100% original &nbsp;·&nbsp; Atención directa por WhatsApp</p>
+</div>
+
+<!-- ====== HEADER ====== -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <a href="#inicio" class="brand">
+      <img src="assets/img/mf-parfums-logo.png" alt="MF Parfums" class="brand-logo">
+      <span class="brand-word">
+        <span class="brand-mf">MF</span>
+        <span class="brand-parfums">PARFUMS</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#garantia">Garantía</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="search-toggle" aria-label="Buscar perfume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn cart-btn" id="cart-toggle" aria-label="Ver carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9.5" cy="20.5" r="1"/><circle cx="17.5" cy="20.5" r="1"/></svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Search overlay -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-overlay-inner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search-input" placeholder="Busca tu perfume — Dior, Chanel, Sauvage..." autocomplete="off">
+      <button class="search-close" id="search-close" aria-label="Cerrar búsqueda">&times;</button>
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="inicio">
+  <div class="hero-marble"></div>
+  <div class="hero-frame"></div>
+  <div class="hero-content">
+    <img src="assets/img/mf-parfums-logo.png" alt="MF Parfums" class="hero-logo">
+    <p class="hero-eyebrow">Perfumería tester · Casas de lujo · Envíos a toda España</p>
+    <h1 class="hero-title">El lujo,<br><em>en su esencia.</em></h1>
+    <p class="hero-sub">Testers originales de las mejores casas de perfumería, verificados y al mejor precio. Misma fragancia, misma concentración, misma calidad — sin el sobrecoste del packaging.</p>
+    <div class="hero-cta">
+      <a href="#catalogo" class="btn btn-gold">Ver catálogo</a>
+      <a href="#garantia" class="btn btn-ghost">Nuestra garantía</a>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        100% originales
+      </span>
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1" y="6" width="15" height="13" rx="1"/><path d="M16 10h3.5L23 13.5V19h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+        Envío a toda España
+      </span>
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M17 2.1l4 4-4 4M3 12.5v-1a4 4 0 0 1 4-4h14M7 21.9l-4-4 4-4M21 11.5v1a4 4 0 0 1-4 4H3"/></svg>
+        Atención por WhatsApp
+      </span>
+    </div>
+  </div>
+  <div class="hero-fade"></div>
+</section>
+
+<!-- ====== TRUST STRIP ====== -->
+<section class="trust-strip">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
+    <span><strong>100%</strong> originales y verificados</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="6" width="15" height="13" rx="1"/><path d="M16 10h3.5L23 13.5V19h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+    <span>Entrega <strong>24–72h</strong> en toda España</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 11.5a8.38 8.38 0 0 1-9.4 8.4 8.5 8.5 0 1 1 9.4-8.4z"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+    <span>Pago <strong>seguro</strong> y flexible</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 2.1l4 4-4 4M3 12.5v-1a4 4 0 0 1 4-4h14M7 21.9l-4-4 4-4M21 11.5v1a4 4 0 0 1-4 4H3"/></svg>
+    <span>Atención <strong>directa</strong> por WhatsApp</span>
+  </div>
+</section>
+
+<!-- ====== MAISONS STRIP ====== -->
+<section class="maisons">
+  <p class="maisons-label">Trabajamos con las casas de perfumería más reconocidas</p>
+  <div class="maisons-row">
+    <span>Dior</span><span>Chanel</span><span>Yves Saint Laurent</span><span>Armani</span><span>Tom Ford</span><span>Carolina Herrera</span><span>Gucci</span><span>Versace</span>
+  </div>
+</section>
+
+<!-- ====== CATÁLOGO ====== -->
+<section class="catalog" id="catalogo">
+  <div class="section-head">
+    <p class="eyebrow">Colección</p>
+    <h2>Nuestros perfumes</h2>
+    <p class="lead">Cada referencia es un tester 100% original, verificado antes de salir de nuestro almacén.</p>
+    <div class="ornament">
+      <span class="line"></span>
+      <svg viewBox="0 0 40 24" class="fleur" fill="currentColor"><path d="M20 2c2 4-1 8-1 8s4-2 6 1-1 7-5 7-7-4-5-7c2-3 6-1 6-1s-3-4-1-8z"/></svg>
+      <span class="line"></span>
+    </div>
+  </div>
+
+  <div class="filters" role="tablist" aria-label="Filtrar por género">
+    <button class="filter-chip active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
+    <button class="filter-chip" data-filter="mujer" role="tab" aria-selected="false">Mujer</button>
+    <button class="filter-chip" data-filter="hombre" role="tab" aria-selected="false">Hombre</button>
+    <button class="filter-chip" data-filter="unisex" role="tab" aria-selected="false">Unisex</button>
+  </div>
+
+  <div class="product-grid" id="product-grid"></div>
+
+  <p class="no-results" id="no-results" hidden>No hemos encontrado perfumes con ese filtro. Prueba con otra búsqueda.</p>
+</section>
+
+<!-- ====== GARANTÍA / CONFIANZA ====== -->
+<section class="guarantee" id="garantia">
+  <div class="guarantee-bg"></div>
+  <div class="guarantee-content">
+    <div class="guarantee-head">
+      <p class="eyebrow">Por qué confiar en MF Parfums</p>
+      <h2>Nuestro compromiso contigo</h2>
+      <p>Trabajamos directamente con distribuidores autorizados. Cada pedido se revisa antes de salir, y te acompañamos por WhatsApp desde que preguntas hasta que el perfume llega a tu puerta.</p>
+    </div>
+    <div class="guarantee-grid">
+      <div class="guarantee-card">
+        <span class="gc-num">I</span>
+        <h3>Originales, siempre</h3>
+        <p>Ningún perfume sale de nuestro almacén sin verificar su autenticidad. Cero réplicas, cero sorpresas.</p>
+      </div>
+      <div class="guarantee-card">
+        <span class="gc-num">II</span>
+        <h3>Envío a toda España</h3>
+        <p>Entrega con seguimiento en 24–72h, embalaje discreto y cuidado para que llegue en perfecto estado.</p>
+      </div>
+      <div class="guarantee-card">
+        <span class="gc-num">III</span>
+        <h3>Pago a tu medida</h3>
+        <p>Elige contrareembolso o gestiona tu pago directamente por WhatsApp, sin complicaciones.</p>
+      </div>
+      <div class="guarantee-card">
+        <span class="gc-num">IV</span>
+        <h3>Trato cercano</h3>
+        <p>Una persona real responde tus dudas, confirma stock y sigue tu pedido hasta que lo recibes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TESTIMONIOS ====== -->
+<section class="testimonials">
+  <div class="section-head">
+    <p class="eyebrow">Clientas y clientes</p>
+    <h2>Lo que opinan de nosotros</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Pedí el Black Opium y llegó en dos días, perfectamente embalado. El olor es idéntico al de perfumería."</p>
+      <p class="testi-author">Marta R. <span class="testi-loc">— Madrid</span></p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Tenía dudas por ser tester, pero me explicaron todo por WhatsApp antes de comprar. Cien por cien recomendable."</p>
+      <p class="testi-author">Javier M. <span class="testi-loc">— Valencia</span></p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Mejor precio que en cualquier tienda física y la misma calidad. Ya he repetido pedido tres veces."</p>
+      <p class="testi-author">Laura S. <span class="testi-loc">— Sevilla</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== BANNER NOSOTROS ====== -->
+<section class="about" id="nosotros">
+  <div class="about-marble"></div>
+  <div class="about-content">
+    <p class="eyebrow">Sobre MF Parfums</p>
+    <h2>¿Qué es un perfume tester?</h2>
+    <p>Un tester es el mismo perfume, exactamente la misma fórmula, concentración y calidad que la versión de tienda — la única diferencia está en la presentación: sin caja decorada, con un envase neutro o de prueba. Trabajamos directamente con distribuidores autorizados para ofrecerte fragancias 100% originales a un precio mucho más justo.</p>
+  </div>
+</section>
+
+<!-- ====== CONTACTO / CTA FINAL ====== -->
+<section class="contact-cta" id="contacto">
+  <div class="ornament">
+    <span class="line"></span>
+    <svg viewBox="0 0 40 24" class="fleur" fill="currentColor"><path d="M20 2c2 4-1 8-1 8s4-2 6 1-1 7-5 7-7-4-5-7c2-3 6-1 6-1s-3-4-1-8z"/></svg>
+    <span class="line"></span>
+  </div>
+  <h2>¿Buscas un perfume y no lo encuentras?</h2>
+  <p>Escríbenos por WhatsApp y te ayudamos a encontrarlo, te confirmamos disponibilidad y gestionamos tu pedido al momento.</p>
+  <a href="#" class="btn btn-gold btn-whatsapp" id="contact-whatsapp" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.8 8.8 0 0 0 12.04 3.5a8.85 8.85 0 0 0-7.65 13.27L3 21l4.35-1.14a8.83 8.83 0 0 0 4.69 1.35h.01a8.85 8.85 0 0 0 8.85-8.85c0-2.36-.92-4.58-2.3-6.06zm-5.56 13.6a7.35 7.35 0 0 1-3.75-1.03l-.27-.16-2.79.73.74-2.72-.18-.28a7.35 7.35 0 1 1 6.25 3.46zm4.04-5.5c-.22-.11-1.3-.64-1.5-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05a6.03 6.03 0 0 1-1.77-1.1 6.6 6.6 0 0 1-1.22-1.52c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.07-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.59.28-.2.22-.78.76-.78 1.85s.8 2.15.91 2.3c.11.15 1.57 2.4 3.81 3.36.53.23.95.37 1.27.47.53.17 1.02.15 1.4.09.43-.06 1.3-.53 1.48-1.04.18-.5.18-.94.13-1.03-.05-.1-.2-.15-.42-.26z"/></svg>
+    Escribir por WhatsApp
+  </a>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="assets/img/mf-parfums-logo.png" alt="MF Parfums" class="footer-logo">
+      <p>Perfumería tester original. Envíos a toda España.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#garantia">Garantía</a>
+      <a href="#nosotros">Nosotros</a>
+    </div>
+    <div class="footer-col">
+      <h4>Atención al cliente</h4>
+      <a href="#contacto">Contacto</a>
+      <a href="#" id="footer-whatsapp">WhatsApp</a>
+      <span class="footer-note">Lun–Sáb, 10:00–20:00</span>
+    </div>
+    <div class="footer-col">
+      <h4>Envíos</h4>
+      <span class="footer-note">Entrega en 24–72h a toda España</span>
+      <span class="footer-note">Pago contrareembolso o por WhatsApp</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 MF Parfums. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- ====== CART DRAWER ====== -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Carrito de compra">
+  <div class="cart-header">
+    <h3>Tu carrito</h3>
+    <button class="cart-close" id="cart-close" aria-label="Cerrar carrito">&times;</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <p class="cart-empty" id="cart-empty">Tu carrito está vacío.<br>Descubre nuestra colección y añade tu fragancia favorita.</p>
+  </div>
+  <div class="cart-footer" id="cart-footer" hidden>
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cart-total-amount">0,00 €</span>
+    </div>
+    <button class="btn btn-gold cart-checkout" id="cart-checkout">Finalizar pedido</button>
+    <p class="cart-note">El pedido se envía por WhatsApp para confirmar disponibilidad y forma de entrega.</p>
+  </div>
+</aside>
+
+<!-- ====== PRODUCT MODAL ====== -->
+<div class="modal-overlay" id="product-modal-overlay">
+  <div class="modal" id="product-modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modal-close" aria-label="Cerrar">&times;</button>
+    <div class="modal-grid">
+      <div class="modal-image" id="modal-image"></div>
+      <div class="modal-info">
+        <p class="modal-brand" id="modal-brand"></p>
+        <h3 class="modal-name" id="modal-name"></h3>
+        <p class="modal-gender" id="modal-gender"></p>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="modal-sizes" id="modal-sizes"></div>
+        <div class="modal-price-row">
+          <span class="modal-price" id="modal-price"></span>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-gold" id="modal-add-cart">Añadir al carrito</button>
+          <a href="#" class="btn btn-ghost btn-whatsapp-sm" id="modal-whatsapp" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== CHECKOUT MODAL ====== -->
+<div class="modal-overlay" id="checkout-modal-overlay">
+  <div class="modal modal-checkout" id="checkout-modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="checkout-close" aria-label="Cerrar">&times;</button>
+    <h3 class="checkout-title">Finalizar pedido</h3>
+    <p class="checkout-sub">Rellena tus datos y te redirigiremos a WhatsApp con el pedido ya preparado para confirmar.</p>
+    <form id="checkout-form" class="checkout-form">
+      <label>Nombre completo
+        <input type="text" id="cf-name" required placeholder="Nombre y apellidos">
+      </label>
+      <label>Teléfono de contacto
+        <input type="tel" id="cf-phone" required placeholder="600 000 000">
+      </label>
+      <label>Dirección de envío
+        <input type="text" id="cf-address" required placeholder="Calle, número, piso">
+      </label>
+      <div class="checkout-row">
+        <label>Ciudad
+          <input type="text" id="cf-city" required placeholder="Ciudad">
+        </label>
+        <label>Código postal
+          <input type="text" id="cf-zip" required placeholder="08000">
+        </label>
+      </div>
+      <label>Notas (opcional)
+        <textarea id="cf-notes" rows="2" placeholder="Indicaciones para la entrega..."></textarea>
+      </label>
+      <div class="checkout-summary" id="checkout-summary"></div>
+      <button type="submit" class="btn btn-gold btn-full">Enviar pedido por WhatsApp</button>
+    </form>
+  </div>
+</div>
+
+<button class="back-to-top" id="back-to-top" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="js/products.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
+
