@@ -4,16 +4,54 @@
    IMPORTANTE: cambia este número por el WhatsApp real de la empresa,
    en formato internacional sin '+' ni espacios. Ejemplo España: 34600000000
    ==================================================================== */
+const SUPABASE_URL = "https://ymjldrtwvfnjtjdvhnof.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_qUaSF8c32ATKi9C4fxlgdA_5kgE8-KC";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+async function testSupabase() {
+
+    const { data, error } = await supabaseClient
+    .from("Products_stock")
+    .select("*");
+
+    console.log("SUPABASE DATA:", data);
+    console.log("SUPABASE ERROR:", error);
+
+}
+
+let currentFilter = "todos";
+let cart = [];
+let STOCK_DATA = [];
+
+async function loadStockData() {
+
+    const { data, error } = await supabaseClient
+        .from("Products_stock")
+        .select("*");
+
+    if(error){
+        console.error(error);
+        return;
+    }
+
+    STOCK_DATA = data;
+
+}
+
 const WHATSAPP_NUMBER = "34663230312"; // <-- EDITA AQUÍ tu número de empresa
 
 // Los productos se cargan desde js/products.js
 
 const euro = (n) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-const genderLabel = (g) => g === "hombre" ? "Hombre" : g === "mujer" ? "Mujer" : "Unisex";
+const genderLabel = (g) => g === "hombre" ? "Hombre" : g === "mujer" ? "Mujer" : "LowCost";
 const initials = (brand) => brand.split(" ").map(w => w[0]).join("").slice(0,2).toUpperCase();
 
-let currentFilter = "todos";
-let cart = [];
 
 function productImageHTML(p) {
   return p.image
@@ -28,6 +66,12 @@ function renderGrid(list) {
   noResults.hidden = true;
 
   grid.innerHTML = list.map(p => {
+
+    const stockInfo = STOCK_DATA.find(
+    s => String(s.sku).trim() === String(p.sku).trim()
+  );
+    const stock = stockInfo ? Number(stockInfo.stock) : 0;
+
     const discount = p.oldPrice ? Math.round(100 - (p.price / p.oldPrice) * 100) : null;
     return `
     <article class="product-card" data-id="${p.id}" tabindex="0">
@@ -37,7 +81,12 @@ function renderGrid(list) {
         ${discount ? `<span class="product-discount">-${discount}%</span>` : ""}
       </div>
       <div class="product-info">
-        <p class="product-brand">${p.brand}</p>
+
+        ${stock <= 0
+    ? '<div class="product-out-stock">SIN STOCK</div>'
+    : ''}
+
+    <p class="product-brand">${p.brand}</p>
         <h3 class="product-name">${p.name}</h3>
         <p class="product-size">${p.size}</p>
         <div class="product-price-row">
@@ -138,6 +187,20 @@ const cartCountEl = document.getElementById('cart-count');
 const cartTotalEl = document.getElementById('cart-total-amount');
 
 function addToCart(id) {
+
+  const product = PRODUCTS.find(p => p.id === id);
+
+const stockInfo = STOCK_DATA.find(
+    s => String(s.sku).trim() === String(product.sku).trim()
+);
+
+const stock = stockInfo ? Number(stockInfo.stock) : 0;
+
+if (stock <= 0) {
+    alert("Este perfume está sin stock.");
+    return;
+}
+
   const existing = cart.find(i => i.id === id);
   if (existing) existing.qty += 1; else cart.push({ id, qty: 1 });
   renderCart();
@@ -275,8 +338,14 @@ window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', 
 backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 /* ---------------- INIT ---------------- */
-applyFilter();
-renderCart();
-setGeneralWhatsappLinks();
+async function init() {
 
+    await loadStockData();
 
+    applyFilter();
+    renderCart();
+    setGeneralWhatsappLinks();
+
+}
+
+init();
