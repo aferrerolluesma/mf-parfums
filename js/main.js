@@ -49,7 +49,12 @@ const WHATSAPP_NUMBER = "34663230312"; // <-- EDITA AQUÍ tu número de empresa
 // Los productos se cargan desde js/products.js
 
 const euro = (n) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-const genderLabel = (g) => g === "hombre" ? "Hombre" : g === "mujer" ? "Mujer" : "LowCost";
+const genderLabel = (g) => ({
+  hombre: "Hombre",
+  mujer: "Mujer",
+  Unisex: "Unisex",
+  LowCost: "LowCost"
+}[g] || "");
 const initials = (brand) => brand.split(" ").map(w => w[0]).join("").slice(0,2).toUpperCase();
 
 
