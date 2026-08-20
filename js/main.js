@@ -408,19 +408,54 @@ document.getElementById('checkout-form').addEventListener('submit', (e) => {
   const zip = document.getElementById('cf-zip').value.trim();
   const notes = document.getElementById('cf-notes').value.trim();
 
-  let total = 0; let lines = [];
-  cart.forEach(item => {
-    const p = PRODUCTS.find(x => x.id === item.id);
-    if (!p) return;
-    const lineTotal = p.price * item.qty;
-    total += lineTotal;
-    lines.push(`• ${p.brand} ${p.name} (${p.size}) x${item.qty} = ${euro(lineTotal)}`);
-  });
+  let total = 0;
+  let lines = [];
 
-  const message = `¡Hola! Quiero hacer este pedido en MF Parfums:\n\n${lines.join("\n")}\n\nTotal: ${euro(total)}\n\nDatos de envío:\nNombre: ${name}\nTeléfono: ${phone}\nDirección: ${address}\nCiudad: ${city}\nCódigo postal: ${zip}\n${notes ? "Notas: " + notes : ""}`;
+cart.forEach(item => {
+  const p = PRODUCTS.find(x => x.id === item.id);
+  if (!p) return;
+
+  const lineTotal = p.price * item.qty;
+  total += lineTotal;
+
+  lines.push(
+    `• ${p.brand} ${p.name} (${p.size}) x${item.qty} = ${euro(lineTotal)}`
+  );
+});
+
+let restockLines = [];
+
+restockRequests.forEach(request => {
+  const p = PRODUCTS.find(x => x.id === request.id);
+  if (!p) return;
+
+  restockLines.push(
+    `• ${p.brand} ${p.name} (${p.size})`
+  );
+});
+
+const message = `¡Hola! Quiero hacer este pedido en MF Parfums:
+
+${lines.length > 0 ? lines.join("\n") : "No hay productos para comprar."}
+
+Total: ${euro(total)}
+${restockLines.length > 0 ? `
+
+PETICIONES DE REPOSICIÓN:
+
+${restockLines.join("\n")}` : ""}
+
+Datos de envío:
+Nombre: ${name}
+Teléfono: ${phone}
+Dirección: ${address}
+Ciudad: ${city}
+Código postal: ${zip}
+${notes ? "Notas: " + notes : ""}`;
 
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
   cart = [];
+  restockRequests = [];
   renderCart();
   closeCheckoutModal();
   e.target.reset();
