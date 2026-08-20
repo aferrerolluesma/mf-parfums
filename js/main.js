@@ -28,6 +28,7 @@ async function testSupabase() {
 let currentFilter = "todos";
 let cart = [];
 let STOCK_DATA = [];
+let restockRequests = [];
 
 async function loadStockData() {
 
@@ -170,6 +171,21 @@ function openProductModal(id) {
   document.getElementById('modal-desc').textContent = p.notes;
   document.getElementById('modal-sizes').innerHTML = `<span class="modal-size-chip">${p.size}</span>`;
   document.getElementById('modal-price').textContent = euro(p.price);
+
+ const stockInfo = STOCK_DATA.find(
+  s => String(s.sku).trim() === String(p.sku).trim()
+);
+
+const stock = stockInfo ? Number(stockInfo.stock) : 0;
+
+const modalAddCart = document.getElementById('modal-add-cart');
+
+if (stock <= 0) {
+  modalAddCart.textContent = "Pedir reposición";
+} else {
+  modalAddCart.textContent = "Añadir al carrito";
+}
+
   const waMsg = encodeURIComponent(`Hola, me interesa el perfume ${p.brand} - ${p.name} (${p.size}) que vi en la web. ¿Me dais más información?`);
   document.getElementById('modal-whatsapp').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
   productModalOverlay.classList.add('open');
@@ -179,7 +195,39 @@ function closeProductModal() { productModalOverlay.classList.remove('open'); doc
 document.getElementById('modal-close').addEventListener('click', closeProductModal);
 productModalOverlay.addEventListener('click', (e) => { if (e.target === productModalOverlay) closeProductModal(); });
 document.getElementById('modal-add-cart').addEventListener('click', () => {
-  if (activeProduct) { addToCart(activeProduct.id); closeProductModal(); openCart(); }
+  if (!activeProduct) return;
+
+  const stockInfo = STOCK_DATA.find(
+    s => String(s.sku).trim() === String(activeProduct.sku).trim()
+  );
+
+  const stock = stockInfo ? Number(stockInfo.stock) : 0;
+
+  if (stock <= 0) {
+  addRestockRequest(activeProduct.id);
+  closeProductModal();
+  openCart();
+  } else {
+    addToCart(activeProduct.id);
+    closeProductModal();
+    openCart();
+  }
+ function addRestockRequest(id) {
+  const product = PRODUCTS.find(p => p.id === id);
+  if (!product) return;
+
+  const alreadyRequested = restockRequests.some(item => item.id === id);
+
+  if (alreadyRequested) {
+    alert("Este perfume ya está en tu lista de peticiones.");
+    return;
+  }
+
+  restockRequests.push({ id });
+  renderCart();
+
+  alert("Perfume añadido a tu lista de peticiones de reposición.");
+}
 });
 
 /* ---------------- CART ---------------- */
@@ -200,8 +248,7 @@ const stockInfo = STOCK_DATA.find(
 );
 
 const stock = stockInfo ? Number(stockInfo.stock) : 0;
-
-if (stock <= 0) {
+  if (stock <= 0) {
     alert("Este perfume está sin stock.");
     return;
 }
@@ -221,19 +268,29 @@ function removeFromCart(id) { cart = cart.filter(i => i.id !== id); renderCart()
 
 function renderCart() {
   const totalQty = cart.reduce((s, i) => s + i.qty, 0);
-  cartCountEl.textContent = totalQty;
-  if (cart.length === 0) {
-    cartEmptyEl.hidden = false; cartFooterEl.hidden = true;
-    cartItemsEl.querySelectorAll('.cart-item').forEach(el => el.remove());
+  const totalItems = totalQty + restockRequests.length;
+
+  cartCountEl.textContent = totalItems;
+
+  if (cart.length === 0 && restockRequests.length === 0) {
+    cartEmptyEl.hidden = false;
+    cartFooterEl.hidden = true;
+    cartItemsEl.innerHTML = '';
     return;
   }
-  cartEmptyEl.hidden = true; cartFooterEl.hidden = false;
+
+  cartEmptyEl.hidden = true;
+  cartFooterEl.hidden = false;
+
   let total = 0;
-  cartItemsEl.innerHTML = cart.map(item => {
+
+  let cartHTML = cart.map(item => {
     const p = PRODUCTS.find(x => x.id === item.id);
     if (!p) return "";
+
     const lineTotal = p.price * item.qty;
     total += lineTotal;
+
     return `
     <div class="cart-item" data-id="${p.id}">
       <div class="cart-item-img">${productImageHTML(p)}</div>
@@ -252,12 +309,64 @@ function renderCart() {
       </div>
     </div>`;
   }).join("");
+
+  if (restockRequests.length > 0) {
+    cartHTML += `
+      <div class="restock-section">
+        <h4>Peticiones de reposición</h4>
+        <p class="restock-description">
+          Estos perfumes están sin stock y quieres que te avisemos cuando vuelvan a estar disponibles.
+        </p>
+        ${restockRequests.map(request => {
+          const p = PRODUCTS.find(x => x.id === request.id);
+          if (!p) return "";
+
+          return `
+          <div class="restock-item">
+            <div>
+              <p class="cart-item-name">${p.name}</p>
+              <p class="cart-item-meta">${p.brand} · ${p.size}</p>
+            </div>
+            <button class="restock-remove" data-id="${p.id}">Quitar</button>
+          </div>`;
+        }).join("")}
+      </div>
+    `;
+  }
+
+  cartItemsEl.innerHTML = cartHTML;
+
   cartTotalEl.textContent = euro(total);
+
   cartItemsEl.querySelectorAll('.cart-item').forEach(el => {
     const id = el.dataset.id;
-    el.querySelector('[data-action="inc"]').addEventListener('click', () => changeQty(id, 1));
-    el.querySelector('[data-action="dec"]').addEventListener('click', () => changeQty(id, -1));
-    el.querySelector('[data-action="remove"]').addEventListener('click', () => removeFromCart(id));
+
+    el.querySelector('[data-action="inc"]').addEventListener(
+      'click',
+      () => changeQty(id, 1)
+    );
+
+    el.querySelector('[data-action="dec"]').addEventListener(
+      'click',
+      () => changeQty(id, -1)
+    );
+
+    el.querySelector('[data-action="remove"]').addEventListener(
+      'click',
+      () => removeFromCart(id)
+    );
+  });
+
+  cartItemsEl.querySelectorAll('.restock-remove').forEach(button => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.id;
+
+      restockRequests = restockRequests.filter(
+        item => item.id !== id
+      );
+
+      renderCart();
+    });
   });
 }
 
